@@ -1,5 +1,39 @@
 {
+  "name": "jwt-with-react-and-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mairajk/JWT-with-React-and-Express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mairajk/JWT-with-React-and-Express/issues"
+  },
+  "homepage": "https://github.com/Mairajk/JWT-with-React-and-Express#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.1",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "axios": "^1.2.1",
+    "bcrypt-inzi": "^1.0.7",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "formik": "^2.2.9",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.1",
+    "styled-components": "^5.3.6",
+    "yup": "^0.32.11"
   }
 }
