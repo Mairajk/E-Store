@@ -65,6 +65,8 @@ const Signup = () => {
                     lastName: values.lastName,
                     email: values.email,
                     password: values.password
+                }, {
+                    withCredentials: true
                 })
                     .then((res) => {
                         console.log('response ===>', res);

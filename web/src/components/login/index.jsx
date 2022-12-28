@@ -61,10 +61,15 @@ const Login = () => {
                         dispatch({
                             type: 'USER_LOGIN',
                             payload: null
-                        })
+                        });
+
+                        dispatch({
+                            type: 'SET_ADMIN',
+                            payload: res.data.isAdmin
+                        });
 
                         console.log('response ===>', res);
-                        // setIsLogin(true);
+                        console.log(res.data.isAdmin);
                     })
                     .catch((err) => {
                         console.log('error ===>', err);

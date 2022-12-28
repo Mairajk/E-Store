@@ -20,9 +20,6 @@ if (window.location.href.split(':')[0] === 'http') {
 const Main = () => {
 
 
-    const [isLogin, setIsLogin] = useState(false);
-    const [isSignup, setIsSignup] = useState(false);
-
     let { state, dispatch } = useContext(GlobalContext);
 
 
@@ -41,7 +38,17 @@ const Main = () => {
                                 <li><Link to={`/gallery`}>Gallery</Link></li>
                                 <li
                                     onClick={() => {
-                                        setIsLogin(!isLogin)
+                                        axios.post(`${baseURL}/logout`)
+                                            .then((res) => {
+                                                console.log('logout respone ===>', res);
+                                                dispatch({
+                                                    type: 'USER_LOGOUT',
+                                                    payload: null
+                                                });
+                                            })
+                                            .catch((err) => {
+                                                console.log('logout error ===>', err);
+                                            })
                                     }}>
                                     <Link to={`/`}>Logout</Link></li>
                             </ul>
@@ -50,16 +57,10 @@ const Main = () => {
                         <nav>
                             <ul>
 
-                                <li
-                                    onClick={() => {
-                                        setIsSignup(!isSignup)
-                                    }}>
+                                <li>
                                     <Link to={`/signup`}>Signup</Link></li>
 
-                                <li
-                                    onClick={() => {
-                                        setIsSignup(!isSignup)
-                                    }}>
+                                <li>
                                     <Link to={`/`}>Already have an account</Link></li>
 
                             </ul>

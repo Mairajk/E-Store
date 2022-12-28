@@ -15,6 +15,11 @@ export const reducer = (state, action) => {
         }
 
 
+        case "SET_ADMIN": {
+            return { ...state, isAdmin: action.payload } // set this to null on purpose, do not change
+        }
+
+
 
         default: {
             return state

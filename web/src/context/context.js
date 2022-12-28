@@ -6,6 +6,7 @@ export const GlobalContext = createContext("Initial Value");
 let data = {
     darkTheme: true,
     user: {},
+    isAdmin: false,
     isLogin: null,
 }
 
