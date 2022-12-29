@@ -32,10 +32,10 @@ const mongodbURI = process.env.mongodbURI || 'mongodb+srv://MairajK:workhardin@c
 // app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: ['http://localhost:3000', "*"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: ['http://localhost:3000', "*"],
+//     credentials: true
+// }));
 
 ///////////////////////////////// USER schema and model ///////////////
 
