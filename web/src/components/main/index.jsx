@@ -22,46 +22,46 @@ const Main = () => {
 
     let { state, dispatch } = useContext(GlobalContext);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const getProfile = async () => {
+    //     const getProfile = async () => {
 
-            try {
-                let res = await axios.get(`${baseURL}/profile`, {
-                    user: state.user,
-                    isAdmin: state.isAdmin
-                }, {
-                    withCredentials: true
-                })
+    //         try {
+    //             let res = await axios.get(`${baseURL}/profile`, {
+    //                 user: state.user,
+    //                 isAdmin: state.isAdmin
+    //             }, {
+    //                 withCredentials: true
+    //             })
 
-                console.log("res: ", res);
+    //             console.log("res: ", res);
 
-                dispatch({
-                    type: 'USER_LOGIN'
-                })
+    //             dispatch({
+    //                 type: 'USER_LOGIN'
+    //             })
 
-                dispatch({
-                    type: 'SET_ADMIN',
-                    payload: res.data.isAdmin
-                });
+    //             dispatch({
+    //                 type: 'SET_ADMIN',
+    //                 payload: res.data.isAdmin
+    //             });
 
-                dispatch({
-                    type: 'SET_USER',
-                    payload: res.data.userProfile
-                });
+    //             dispatch({
+    //                 type: 'SET_USER',
+    //                 payload: res.data.userProfile
+    //             });
 
-            } catch (error) {
+    //         } catch (error) {
 
-                console.log("axios error: ", error);
+    //             console.log("axios error: ", error);
 
-                dispatch({
-                    type: 'USER_LOGOUT'
-                })
-            }
-        }
-        getProfile();
+    //             dispatch({
+    //                 type: 'USER_LOGOUT'
+    //             })
+    //         }
+    //     }
+    //     getProfile();
 
-    }, [])
+    // }, [])
 
 
     return (
