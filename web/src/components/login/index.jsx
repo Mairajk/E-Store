@@ -67,6 +67,10 @@ const Login = () => {
                             type: 'SET_ADMIN',
                             payload: res.data.isAdmin
                         });
+                        dispatch({
+                            type: 'SET_USER',
+                            payload: res.data.userProfile
+                        });
 
                         console.log('response ===>', res);
                         console.log(res.data.isAdmin);

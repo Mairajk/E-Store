@@ -9,6 +9,7 @@ import moment from 'moment';
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../context/context';
 import CRUD from '../CRUD';
+import UserPannel from '../UserPannel';
 
 
 let baseURL = '';
@@ -21,13 +22,17 @@ const Home = () => {
 
     let { state, dispatch } = useContext(GlobalContext);
 
+  
 
     return (
         <div className="home">
             {(state.isAdmin) ?
                 <CRUD />
                 :
-                <h1>This is Home</h1>
+                <div>
+                    <UserPannel />
+                    {/* <h1>This is Home</h1> */}
+                </div>
             }
         </div>
     )

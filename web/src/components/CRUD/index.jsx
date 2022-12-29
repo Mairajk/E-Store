@@ -21,13 +21,11 @@ const CRUD = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [responseMessage, setResponseMessage] = useState(null);
     const [responseProducts, setResponseProducts] = useState([]);
-    const [editingId, setEditingId] = useState(null);
     const [load, setLoad] = useState(false);
     const [editingData, setEditingData] = useState({});
     const [searchText, setSearchText] = useState('');
     const [searchData, setSearchData] = useState([]);
 
-    // const [deleteId, setDeleteId] = useState(null);
 
     useEffect(() => {
 
@@ -242,7 +240,7 @@ const CRUD = () => {
         <div>
             <h1>CRUD Operation With Express and React</h1>
 
-            <form action="" on onSubmit={search}>
+            <form action="" className='searchForm' on onSubmit={search}>
 
                 <input
                     type="search"
@@ -269,18 +267,24 @@ const CRUD = () => {
                 {
                     (isAdding) ?
 
-                        <form onSubmit={formik.handleSubmit}>
+                        <form className='addForm' onSubmit={formik.handleSubmit} >
+
+                            <label htmlFor="image" className='imgUpload'>
+                                <input
+                                    id="image"
+                                    name="image"
+                                    type="file"
+                                    className='fileInput'
+                                    onChange={(e) => {
+                                        formik.setFieldValue("image", e.currentTarget.files[0]);
+                                    }} />
+                                <i className='imgIcon'><ImageIcon /></i>
+                            </label>
+
+
+
                             <div className="inputDiv">
                                 <label htmlFor="productName">Product name : </label>
-
-                                <label htmlFor="image">
-                                    <input id="image" name="image" type="file"
-                                        onChange={(e) => {
-                                            formik.setFieldValue("image", e.currentTarget.files[0]);
-                                        }} />
-                                    <ImageIcon />
-                                </label>
-
                                 <input
                                     type="text"
                                     id="productName"

@@ -57,7 +57,7 @@ let productSchema = new mongoose.Schema({
     name: { type: String, required: true },
     price: { type: Number, required: true },
     description: { type: String, required: true },
-    image: { type: String},
+    image: { type: String },
     date: { type: Date, default: Date.now }
 })
 
@@ -66,6 +66,17 @@ const productModel = mongoose.model('products', productSchema);
 
 //////////////////////////////////////////////////////////////////////////////
 
+
+app.get('/profile', (req, res) => {
+    let body = req.body;
+
+    res.send({
+        message: 'get profile successfully',
+        profile: body.user,
+        isAdmin: body.isAdmin
+    }
+    )
+})
 
 //////////////////  SIGNUP API ////////////////////////////////////
 

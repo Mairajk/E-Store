@@ -76,6 +76,12 @@ const Signup = () => {
                             type: 'USER_LOGIN',
                             payload: null
                         })
+                        
+                        dispatch({
+                            type: 'SET_USER',
+                            payload: res.data.userProfile
+                        });
+
                     })
                     .catch((err) => {
                         console.log('error ===>', err);

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from '../../context/context';
 import axios from 'axios';
 import Signup from "../signup";
@@ -22,7 +22,46 @@ const Main = () => {
 
     let { state, dispatch } = useContext(GlobalContext);
 
+    useEffect(() => {
 
+        const getProfile = async () => {
+
+            try {
+                let res = await axios.get(`${baseURL}/profile`, {
+                    user: state.user,
+                    isAdmin: state.isAdmin
+                }, {
+                    withCredentials: true
+                })
+
+                console.log("res: ", res);
+
+                dispatch({
+                    type: 'USER_LOGIN'
+                })
+
+                dispatch({
+                    type: 'SET_ADMIN',
+                    payload: res.data.isAdmin
+                });
+
+                dispatch({
+                    type: 'SET_USER',
+                    payload: res.data.userProfile
+                });
+
+            } catch (error) {
+
+                console.log("axios error: ", error);
+
+                dispatch({
+                    type: 'USER_LOGOUT'
+                })
+            }
+        }
+        getProfile();
+
+    }, [])
 
 
     return (

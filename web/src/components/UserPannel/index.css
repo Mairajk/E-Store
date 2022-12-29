@@ -1,11 +1,5 @@
-/* * {
-    margin: 0;
-    padding: 0;
-} */
-
 body {
     background-color: whitesmoke;
-    padding: 20px;
 }
 
 .products {
@@ -48,37 +42,6 @@ body {
     padding: 0px 10px;
 }
 
-.imgUpload {
-    width: fit-content;
-    margin: 10px 0px;
-    margin-left: 90%;
-}
-
 img {
     width: 100%;
-}
-
-.imgIcon {
-    width: 50px;
-}
-
-.fileInput {
-    display: none;
-}
-
-.addForm {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    /* align-items: center; */
-}
-
-.inpupDiv {
-    margin: 10px 0px;
-    padding: 10px 0px;
-}
-
-.searchForm {
-    display: flex;
-    justify-content: flex-end;
 }
