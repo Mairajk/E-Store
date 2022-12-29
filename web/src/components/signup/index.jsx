@@ -8,7 +8,7 @@ import { GlobalContext } from '../../context/context';
 
 import { TextField, Button, Grid } from '@mui/material'
 
-let baseURL = '';
+let baseURL = '/api/v1';
 if (window.location.href.split(':')[0] === 'http') {
     baseURL = 'http://localhost:5001'
 };
@@ -76,7 +76,7 @@ const Signup = () => {
                             type: 'USER_LOGIN',
                             payload: null
                         })
-                        
+
                         dispatch({
                             type: 'SET_USER',
                             payload: res.data.userProfile

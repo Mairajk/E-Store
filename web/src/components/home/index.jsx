@@ -12,7 +12,7 @@ import CRUD from '../CRUD';
 import UserPannel from '../UserPannel';
 
 
-let baseURL = '';
+let baseURL = '/api/v1';
 if (window.location.href.split(':')[0] === 'http') {
     baseURL = 'http://localhost:5001';
 };
@@ -22,7 +22,7 @@ const Home = () => {
 
     let { state, dispatch } = useContext(GlobalContext);
 
-  
+
 
     return (
         <div className="home">

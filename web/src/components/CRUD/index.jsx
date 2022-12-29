@@ -8,7 +8,7 @@ import ImageIcon from '@mui/icons-material/Image';
 
 import { useState, useEffect } from 'react';
 
-let baseURL = '';
+let baseURL = '/api/v1';
 if (window.location.href.split(':')[0] === 'http') {
     baseURL = 'http://localhost:5001';
 };

@@ -11,7 +11,7 @@ import { TextField, Button, Grid } from '@mui/material'
 
 
 
-let baseURL = '';
+let baseURL = '/api/v1';
 if (window.location.href.split(':')[0] === 'http') {
     baseURL = 'http://localhost:5001'
 };

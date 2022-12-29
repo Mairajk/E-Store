@@ -67,7 +67,7 @@ const productModel = mongoose.model('products', productSchema);
 //////////////////////////////////////////////////////////////////////////////
 
 
-app.get('/profile', (req, res) => {
+app.get('/api/v1/profile', (req, res) => {
     let body = req.body;
 
     res.send({
@@ -80,7 +80,7 @@ app.get('/profile', (req, res) => {
 
 //////////////////  SIGNUP API ////////////////////////////////////
 
-app.post('/signup', (req, res) => {
+app.post('/api/v1/signup', (req, res) => {
 
     let body = req.body;
 
@@ -172,7 +172,7 @@ app.post('/signup', (req, res) => {
 //////////////////  LOGIN API ////////////////////////////////////
 
 
-app.post('/login', (req, res) => {
+app.post('/api/v1/login', (req, res) => {
     let body = req.body;
     body.email = body.email.toLowerCase();
 
@@ -276,7 +276,7 @@ app.post('/login', (req, res) => {
 
 //////////////////  LOGOUT API ////////////////////////////////////
 
-app.post('/logout', (req, res) => {
+app.post('/api/v1/logout', (req, res) => {
     res.cookie('Token', '', {
         maxAge: 1,
         httpOnly: true
@@ -291,7 +291,7 @@ app.post('/logout', (req, res) => {
 
 ///////////////////////////*******************////////////////////////////////////////
 
-app.use((req, res, next) => {
+app.use('/api/v1', (req, res, next) => {
 
     console.log("req.cookies: ", req.cookies);
 
@@ -336,7 +336,7 @@ app.use((req, res, next) => {
 
 //////////////////// Product adding API //////////////////////////////////
 
-app.post('/product', (req, res) => {
+app.post('/api/v1/product', (req, res) => {
     const body = req.body;
 
     if (
@@ -382,7 +382,7 @@ app.post('/product', (req, res) => {
 
 //////////////////// all Products get API //////////////////////////////////
 
-app.get('/products', (req, res) => {
+app.get('/api/v1/products', (req, res) => {
 
     productModel.find({}, (err, data) => {
         if (!err) {
@@ -405,7 +405,7 @@ app.get('/products', (req, res) => {
 
 //////////////////// Product Delete API //////////////////////////////////
 
-app.delete('/product/:id', (req, res) => {
+app.delete('/api/v1/product/:id', (req, res) => {
     const id = req.params.id;
 
     productModel.deleteOne({ _id: id }, (err, deletedProduct) => {
@@ -435,7 +435,7 @@ app.delete('/product/:id', (req, res) => {
 
 //////////////////// Product Edit API //////////////////////////////////
 
-app.put('/product/:id', async (req, res) => {
+app.put('/api/v1/product/:id', async (req, res) => {
     const body = req.body;
     const id = req.params.id;
 
@@ -480,7 +480,7 @@ app.put('/product/:id', async (req, res) => {
 
 //////////////////// Product Search API //////////////////////////////////
 
-app.get('/products/:name', (req, res) => {
+app.get('/api/v1/products/:name', (req, res) => {
 
     let findName = req.params.name;
 
