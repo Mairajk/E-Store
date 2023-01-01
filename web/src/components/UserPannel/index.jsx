@@ -6,16 +6,20 @@ import * as yup from 'yup';
 import moment from 'moment';
 import ImageIcon from '@mui/icons-material/Image';
 
-import { useState, useEffect } from 'react';
+import { GlobalContext } from '../../context/context';
 
-let baseURL = '';
-if (window.location.href.split(':')[0] === 'http') {
-    baseURL = 'http://localhost:5001';
-};
+import { useState, useEffect, useContext } from 'react';
+
+// let baseURL = '';
+// if (window.location.href.split(':')[0] === 'http') {
+//     baseURL = 'http://localhost:5001';
+// };
 
 
 
 const UserPannel = () => {
+
+    let { state, dispatch } = useContext(GlobalContext);
 
     const [responseMessage, setResponseMessage] = useState(null);
     const [responseProducts, setResponseProducts] = useState([]);
@@ -27,7 +31,7 @@ const UserPannel = () => {
 
     useEffect(() => {
 
-        axios.get(`${baseURL}/products`, {
+        axios.get(`${state.baseURL}/products`, {
             withCredentials: true
         })
             .then((res) => {
@@ -45,7 +49,7 @@ const UserPannel = () => {
     const search = (e) => {
         e.preventDefault();
 
-        axios.get(`${baseURL}/products/${searchText}`, {
+        axios.get(`${state.baseURL}/products/${searchText}`, {
             withCredentials: true
         })
             .then((res) => {

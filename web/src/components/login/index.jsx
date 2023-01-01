@@ -11,12 +11,14 @@ import { TextField, Button, Grid } from '@mui/material'
 
 
 
-let baseURL = '/api/v1';
-if (window.location.href.split(':')[0] === 'http') {
-    baseURL = 'http://localhost:5001'
-};
+// let baseURL = '/api/v1';
+// if (window.location.href.split(':')[0] === 'http') {
+//     baseURL = 'http://localhost:5001'
+// };
 
 const Login = () => {
+
+    const [message, setMessage] = useState('');
 
     let { state, dispatch } = useContext(GlobalContext);
 
@@ -50,7 +52,7 @@ const Login = () => {
 
             const loginHandler = () => {
 
-                axios.post(`${baseURL}/login`, {
+                axios.post(`${state.baseURL}/login`, {
                     email: values.email,
                     password: values.password
                 }, {
@@ -77,7 +79,9 @@ const Login = () => {
                     })
                     .catch((err) => {
                         console.log('error ===>', err);
-                    })
+
+                        setMessage(err?.response?.data?.message);
+                    });
             };
 
             loginHandler();
@@ -90,7 +94,10 @@ const Login = () => {
         <div className="loginDiv">
 
             <h1>Login</h1>
+
             <form onSubmit={formik.handleSubmit}>
+
+                <h3 className="errMessage">{message}</h3>
 
                 <Grid
                     container

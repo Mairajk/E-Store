@@ -12,13 +12,12 @@ import Gallery from "../gallery";
 
 
 
-let baseURL = '/api/v1';
-if (window.location.href.split(':')[0] === 'http') {
-    baseURL = 'http://localhost:5001'
-};
+// let baseURL = '/api/v1';
+// if (window.location.href.split(':')[0] === 'http') {
+//     baseURL = 'http://localhost:5001'
+// };
 
 const Main = () => {
-
 
     let { state, dispatch } = useContext(GlobalContext);
 
@@ -27,24 +26,21 @@ const Main = () => {
         const getProfile = async () => {
 
             try {
-                let res = await axios.get(`${baseURL}/product`, {
-                    user: state.user,
-                    isAdmin: state.isAdmin
-                }, {
-                    withCredentials: true
-                })
+                let res = await axios.get(`${state.baseURL}/profile`,
+                    // {},
+                    {
+                        withCredentials: true
+                    })
 
-                console.log("res: ", res);
+                console.log("useEffect ===>: ", res);
 
                 dispatch({
                     type: 'USER_LOGIN'
                 })
-
                 dispatch({
                     type: 'SET_ADMIN',
                     payload: res.data.isAdmin
                 });
-
                 dispatch({
                     type: 'SET_USER',
                     payload: res.data.userProfile
@@ -54,9 +50,9 @@ const Main = () => {
 
                 console.log("axios error: ", error);
 
-                dispatch({
-                    type: 'USER_LOGOUT'
-                })
+                // dispatch({
+                //     type: 'USER_LOGOUT'
+                // })
             }
         }
         getProfile();
@@ -77,7 +73,9 @@ const Main = () => {
                                 <li><Link to={`/gallery`}>Gallery</Link></li>
                                 <li
                                     onClick={() => {
-                                        axios.post(`${baseURL}/logout`)
+                                        axios.post(`${state.baseURL}/logout`, {}, {
+                                            withCredentials: true
+                                        })
                                             .then((res) => {
                                                 console.log('logout respone ===>', res);
                                                 dispatch({

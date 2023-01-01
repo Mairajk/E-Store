@@ -5,17 +5,21 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import moment from 'moment';
 import ImageIcon from '@mui/icons-material/Image';
+import { GlobalContext } from '../../context/context';
 
-import { useState, useEffect } from 'react';
 
-let baseURL = '/api/v1';
-if (window.location.href.split(':')[0] === 'http') {
-    baseURL = 'http://localhost:5001';
-};
+import { useState, useEffect, useContext } from 'react';
+
+// let baseURL = '/api/v1';
+// if (window.location.href.split(':')[0] === 'http') {
+//     baseURL = 'http://localhost:5001';
+// };
 
 
 
 const CRUD = () => {
+
+    let { state, dispatch } = useContext(GlobalContext);
 
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -29,7 +33,7 @@ const CRUD = () => {
 
     useEffect(() => {
 
-        axios.get(`${baseURL}/products`, {
+        axios.get(`${state.baseURL}/products`, {
             withCredentials: true
         })
             .then((res) => {
@@ -48,7 +52,7 @@ const CRUD = () => {
         console.log(' This is deleteProduct');
         console.log(id);
 
-        axios.delete(`${baseURL}/product/${id}`, {
+        axios.delete(`${state.baseURL}/product/${id}`, {
             withCredentials: true
         })
             .then((res) => {
@@ -121,7 +125,7 @@ const CRUD = () => {
                 .then(res => {
 
 
-                    axios.post(`${baseURL}/product`, {
+                    axios.post(`${state.baseURL}/product`, {
                         name: values.productName,
                         price: values.price,
                         description: values.description,
@@ -197,7 +201,7 @@ const CRUD = () => {
             console.log(' This is update Product');
             console.log(editingData._id);
 
-            axios.put(`${baseURL}/product/${editingData._id}`, {
+            axios.put(`${state.baseURL}/product/${editingData._id}`, {
                 name: updateValues.productName,
                 price: updateValues.price,
                 description: updateValues.description
@@ -217,7 +221,7 @@ const CRUD = () => {
     const search = (e) => {
         e.preventDefault();
 
-        axios.get(`${baseURL}/products/${searchText}`, {
+        axios.get(`${state.baseURL}/products/${searchText}`, {
             withCredentials: true
         })
             .then((res) => {

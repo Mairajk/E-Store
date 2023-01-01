@@ -13,8 +13,8 @@ import {
     varifyHash,
 } from "bcrypt-inzi";
 import mongoose from "mongoose";
-import { type } from "os";
-import { fileURLToPath } from "url";
+// import { type } from "os";
+// import { fileURLToPath } from "url";
 
 const SECRET = process.env.SECRET || 'secuirity';
 
@@ -67,16 +67,6 @@ const productModel = mongoose.model('products', productSchema);
 //////////////////////////////////////////////////////////////////////////////
 
 
-app.get('/api/v1/profile', (req, res) => {
-    let body = req.body;
-
-    res.send({
-        message: 'get profile successfully',
-        profile: body.user,
-        isAdmin: body.isAdmin
-    }
-    )
-})
 
 //////////////////  SIGNUP API ////////////////////////////////////
 
@@ -302,7 +292,7 @@ app.use('/api/v1', (req, res, next) => {
         return;
     }
 
-    jwt.verify(req.cookies.Token, SECRET, function (err, decodedData) {
+    jwt.verify(req.cookies.Token, SECRET, (err, decodedData) => {
         if (!err) {
 
             console.log("decodedData: ", decodedData);
@@ -333,6 +323,61 @@ app.use('/api/v1', (req, res, next) => {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+
+
+///////////////////////////// Profile API //////////////////////////////////////
+
+app.get('/api/v1/profile', (req, res) => {
+    let body = req.body;
+
+    console.log("req.cookies: ", req.cookies);
+
+    if (!req?.cookies?.Token) {
+        res.status(401).send({
+            message: "include http-only credentials with every request"
+        })
+        return;
+    }
+
+    jwt.verify(req.cookies.Token, SECRET, (err, decodedData) => {
+        if (!err) {
+
+            console.log("decodedData: ", decodedData);
+
+            const nowDate = new Date().getTime() / 1000;
+
+            if (decodedData.exp < nowDate) {
+
+                res.status(401);
+                res.cookie('Token', '', {
+                    maxAge: 1,
+                    httpOnly: true
+                });
+                res.send({ message: "token expired" })
+
+            } else {
+
+                console.log("token approved");
+
+                // req.body.token = decodedData;
+
+                (decodedData.email === ADMIN) ?
+
+                    res.send({
+                        isAdmin: true,
+                        email: decodedData.email
+                    })
+                    :
+                    res.send({
+                        isAdmin: false,
+                        email: decodedData.email
+                    })
+            }
+        } else {
+            res.status(401).send("invalid token")
+        }
+    });
+});
 
 //////////////////// Product adding API //////////////////////////////////
 

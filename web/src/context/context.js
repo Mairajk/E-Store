@@ -8,6 +8,9 @@ let data = {
     user: {},
     isAdmin: false,
     isLogin: null,
+    baseURL: (window.location.href.includes('localhost')) ?
+        `http://localhost:5001/api/v1` : `/api/v1`
+
 }
 
 export default function ContextProvider({ children }) {

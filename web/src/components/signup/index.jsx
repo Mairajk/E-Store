@@ -8,12 +8,15 @@ import { GlobalContext } from '../../context/context';
 
 import { TextField, Button, Grid } from '@mui/material'
 
-let baseURL = '/api/v1';
-if (window.location.href.split(':')[0] === 'http') {
-    baseURL = 'http://localhost:5001'
-};
+// let baseURL = '/api/v1';
+// if (window.location.href.split(':')[0] === 'http') {
+//     baseURL = 'http://localhost:5001'
+// };
 
 const Signup = () => {
+
+    const [message, setMessage] = useState('');
+
     let { state, dispatch } = useContext(GlobalContext);
 
 
@@ -60,7 +63,7 @@ const Signup = () => {
 
             const signupHandler = () => {
 
-                axios.post(`${baseURL}/signup`, {
+                axios.post(`${state.baseURL}/signup`, {
                     firstName: values.firstName,
                     lastName: values.lastName,
                     email: values.email,
@@ -85,6 +88,7 @@ const Signup = () => {
                     })
                     .catch((err) => {
                         console.log('error ===>', err);
+                        setMessage(err?.response?.data?.message);
                     })
             };
 
@@ -97,7 +101,10 @@ const Signup = () => {
         <div className="signupDiv">
 
             <h1>Signup</h1>
+
             <form onSubmit={formik.handleSubmit}>
+
+                <h3 className="errMessage">{message}</h3>
 
                 <Grid
                     container
