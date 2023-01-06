@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.mjs",
-    "dev": "node --watch server.mjs"
+    "dev": "nodemon server.mjs"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "formik": "^2.2.9",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
   }
