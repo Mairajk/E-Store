@@ -1,7 +1,6 @@
 {
-  "name": "jwt-with-react-and-express",
+  "name": "e-store",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,5 +29,7 @@
     "nodemon": "^2.0.20",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

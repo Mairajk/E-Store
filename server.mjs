@@ -33,7 +33,7 @@ const mongodbURI = process.env.mongodbURI || 'mongodb+srv://MairajK:workhardin@c
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    // origin: ['http://localhost:3000', "*"],
+    origin: ['http://localhost:3000', "*"],
     credentials: true
 }));
 
